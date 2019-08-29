@@ -2,10 +2,49 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="quizRoom">
+<mapper namespace="qr">
 
-	<select id="searchMem" resultType="String">
-		select uid, uname, email from member, quizRoom where codenum=#{codenum}
-	</select>
 
+	<insert id="makeRoom" parameterType="qdto">
+		insert into quizRoom values(#{uid},#{qrname},#{codenum},#{endtime})
+	</insert>
 	
+	<select id= "showCodeNum" resultType="String">
+		select codenum from quizRoom where uid=#{uid} and qrname=#{qrname}
+	</select>
+	
+	<select id= "checkCodeNum" resultType="String">
+		select codenum from quizRoom where codenum=#{codenum}
+	</select>
+	
+	<insert id="roomUserInit" parameterType="qdto">
+		insert into roomUser values(#{uid},#{codenum})
+	</insert>
+	
+	<delete id="deleteRoom" parameterType="mdto">
+		delete from quizRoom where uid = #{uid} and codenum = #{codenum}
+	</delete>
+
+	<insert id="enterRoom" parameterType="qrdto">
+		insert into roomUser
+		values
+		(#{uid},#{codenum})
+	</insert>
+	
+	<select id= "makeRoomSearch" resultType="qrdto">
+		select codenum,qrname from quizRoom where uid=#{uid}
+	</select>
+	
+	<select id= "participateRoom" resultType="String">
+		select codenum from roomUser where uid=#{uid}
+	</select>
+	
+	<select id= "participateRoomInfo" resultType="qrdto">
+		select codenum,qrname from quizRoom where codenum=#{codenum}
+	</select>
+	
+	<select id= "uidList" resultType="String">
+		select uid from roomUser where codenum=#{codenum}
+	</select>
+	
+</mapper>
