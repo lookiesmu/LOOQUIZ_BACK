@@ -19,4 +19,5 @@ public interface UtilDAO {
 	public int badgeRname(UtilDTO dto);
 	
 	public List<String> storeList();
+
 }

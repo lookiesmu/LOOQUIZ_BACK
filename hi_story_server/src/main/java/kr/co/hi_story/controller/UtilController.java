@@ -60,6 +60,7 @@ public class UtilController {
 			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
 	
 	@GetMapping("storeList")
 	public ResponseEntity storeList() {
@@ -69,6 +70,7 @@ public class UtilController {
 			System.out.println(e);
 			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+
 
 	}
 
