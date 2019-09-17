@@ -26,9 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 
 	<insert id="enterRoom" parameterType="qrdto">
-		insert into roomUser
-		values
-		(#{uid},#{codenum})
+		insert into roomUser values (#{uid},#{codenum})
 	</insert>
 	
 	<select id= "makeRoomSearch" resultType="qrdto">
