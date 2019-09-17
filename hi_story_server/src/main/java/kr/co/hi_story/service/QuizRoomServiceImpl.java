@@ -42,13 +42,10 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 	JwtService jwt;
 
 	@Override
-	public DataDTO makeRoom(QuizRoomDTO dto) {
+	public MessageDTO makeRoom(QuizRoomDTO dto) {
 		qrdto = new QuizRoomDTO();
-		
-		int random=0;
+		String codenum = dto.getCodenum();
 		while(true) {
-			random = (int) (Math.random()*1000+1);
-			String codenum = dto.getQrname() + "#"+String.valueOf(random);
 			if(quizroomDAO.checkCodeNum(codenum)==1) {
 				qrdto.setCodenum(codenum);
 				break;
@@ -59,10 +56,9 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 		qrdto.setEndtime(dto.getEndtime());
 		
 		if(quizroomDAO.makeRoom(qrdto) ==1 && quizroomDAO.roomUserInit(qrdto)==1) {
-			String result = quizroomDAO.showCodeNum(qrdto);
-			return DataDTO.resData(ResponseMessage.SUCCESS, result);
+			return MessageDTO.resMessage(ResponseMessage.SUCCESS);
 		}
-		return DataDTO.resData(ResponseMessage.FAIL, null);
+		return MessageDTO.resMessage(ResponseMessage.FAIL);
 	}
 	
 	@Override
