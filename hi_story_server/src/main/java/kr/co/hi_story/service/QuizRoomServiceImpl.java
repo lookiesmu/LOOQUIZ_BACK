@@ -65,10 +65,10 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 	}
 	
 	@Override
-	public MessageDTO deleteRoom(QuizRoomDTO dto) {
+	public MessageDTO deleteRoom(String codenum) {
 		qrdto = new QuizRoomDTO();
 		qrdto.setUid(jwt.getUserID());
-		qrdto.setCodenum(dto.getCodenum());
+		qrdto.setCodenum(codenum);
 		
 		if (quizroomDAO.deleteRoom(qrdto) == 1) {
 			return MessageDTO.resMessage(ResponseMessage.SUCCESS);
