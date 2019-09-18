@@ -9,7 +9,7 @@ import kr.co.hi_story.dto.QuizRoomDTO;
 public interface QuizRoomService {
 	public MessageDTO  makeRoom(QuizRoomDTO dto);
 
-	public MessageDTO deleteRoom(QuizRoomDTO dto);
+	public MessageDTO deleteRoom(String codenum);
 
 	public MessageDTO enterRoom(QuizRoomDTO dto);
 
@@ -18,6 +18,7 @@ public interface QuizRoomService {
 	public DataDTO participateRoom();
 
 	public DataDTO searchMem(String codenum);
+
 	
 	
 }
