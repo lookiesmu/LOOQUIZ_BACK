@@ -42,34 +42,33 @@ public class QuizRoomServiceImpl implements QuizRoomService {
 	JwtService jwt;
 
 	@Override
-	public DataDTO makeRoom(QuizRoomDTO dto) {
+	public MessageDTO makeRoom(QuizRoomDTO dto) {
 		qrdto = new QuizRoomDTO();
+		String codenum = dto.getCodenum();
 		
-		int random=0;
-		while(true) {
-			random = (int) (Math.random()*1000+1);
-			String codenum = dto.getQrname() + "#"+String.valueOf(random);
-			if(quizroomDAO.checkCodeNum(codenum)==1) {
-				qrdto.setCodenum(codenum);
-				break;
-			}
+		if(quizroomDAO.checkCodeNum(codenum)==1) {
+			qrdto.setCodenum(codenum);
 		}
+		
+		else if(quizroomDAO.checkCodeNum(codenum)==0){
+			return MessageDTO.resMessage(ResponseMessage.OVERLAP);
+		}
+		
 		qrdto.setUid(jwt.getUserID());
 		qrdto.setQrname(dto.getQrname());
 		qrdto.setEndtime(dto.getEndtime());
 		
 		if(quizroomDAO.makeRoom(qrdto) ==1 && quizroomDAO.roomUserInit(qrdto)==1) {
-			String result = quizroomDAO.showCodeNum(qrdto);
-			return DataDTO.resData(ResponseMessage.SUCCESS, result);
+			return MessageDTO.resMessage(ResponseMessage.SUCCESS);
 		}
-		return DataDTO.resData(ResponseMessage.FAIL, null);
+		return MessageDTO.resMessage(ResponseMessage.FAIL);
 	}
 	
 	@Override
-	public MessageDTO deleteRoom(QuizRoomDTO dto) {
+	public MessageDTO deleteRoom(String codenum) {
 		qrdto = new QuizRoomDTO();
 		qrdto.setUid(jwt.getUserID());
-		qrdto.setCodenum(dto.getCodenum());
+		qrdto.setCodenum(codenum);
 		
 		if (quizroomDAO.deleteRoom(qrdto) == 1) {
 			return MessageDTO.resMessage(ResponseMessage.SUCCESS);
