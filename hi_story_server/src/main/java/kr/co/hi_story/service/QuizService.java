@@ -15,7 +15,7 @@ public interface QuizService {
 	
 	public MessageDTO deleteQ(int qid);
 	
-	public DataDTO successRate(QuizDTO dto);
+	public DataDTO successRate(String cityname);
 
 	public MessageDTO editingQuiz(QuizDTO dto);
 

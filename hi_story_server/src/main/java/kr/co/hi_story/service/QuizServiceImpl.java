@@ -75,10 +75,10 @@ public class QuizServiceImpl implements QuizService {
 	}
 
 	@Override
-	public DataDTO successRate(QuizDTO dto) {
+	public DataDTO successRate(String cityname) {
 		pdto = new ParticipationDTO();
 		ParticipationDTO temp = new ParticipationDTO();
-		List<String> rname = quizDAO.rnameList(dto.getCityname());
+		List<String> rname = quizDAO.rnameList(cityname);
 		pdto.setUid(jwt.getUserID());
 		List<ParticipationDTO> result = new ArrayList<>(); 
 		for (String object : rname) {
