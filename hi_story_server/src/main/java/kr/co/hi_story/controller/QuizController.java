@@ -50,9 +50,9 @@ public class QuizController {
 
 	// ���� �޼���
 	@GetMapping("successRate")
-	public ResponseEntity successRate(@RequestBody QuizDTO dto) {
+	public ResponseEntity successRate(@RequestParam("cityname") String cityname) {
 		try {
-			return new ResponseEntity<>(quizService.successRate(dto), HttpStatus.OK);
+			return new ResponseEntity<>(quizService.successRate(cityname), HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.println(e);
 			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);
