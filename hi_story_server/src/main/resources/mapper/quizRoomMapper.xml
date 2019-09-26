@@ -21,14 +21,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into roomUser values(#{uid},#{codenum})
 	</insert>
 	
-	<delete id="deleteRoom" parameterType="mdto">
-		delete from quizRoom where uid = #{uid} and codenum = #{codenum}
+	<delete id="deleteRoom" parameterType="qrdto">
+		delete from quizRoom where uid=#{uid} and codenum=#{codenum}
 	</delete>
 
 	<insert id="enterRoom" parameterType="qrdto">
-		insert into roomUser
-		values
-		(#{uid},#{codenum})
+		insert into roomUser values (#{uid},#{codenum})
 	</insert>
 	
 	<select id= "makeRoomSearch" resultType="qrdto">

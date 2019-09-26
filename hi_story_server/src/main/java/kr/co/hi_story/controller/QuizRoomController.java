@@ -50,9 +50,9 @@ public class QuizRoomController {
 	}
 	
 	@DeleteMapping("deleteRoom")
-	public ResponseEntity deleteRoom(@RequestBody QuizRoomDTO dto) {
+	public ResponseEntity deleteRoom(@RequestParam("codenum") String codenum) {
 		try {
-			return new ResponseEntity<>(quizroomService.deleteRoom(dto), HttpStatus.OK);
+			return new ResponseEntity<>(quizroomService.deleteRoom(codenum), HttpStatus.OK);
 		} catch (Exception e) {
 			System.out.println(e);
 			return new ResponseEntity<>(FAIL_DEFAULT_RES, HttpStatus.INTERNAL_SERVER_ERROR);

@@ -13,9 +13,9 @@ import kr.co.hi_story.dto.QuizDTO;
 public interface QuizService {
 	public MessageDTO  createQ(QuizDTO dto);
 	
-	public MessageDTO deleteQ(QuizDTO dto);
+	public MessageDTO deleteQ(int qid);
 	
-	public DataDTO successRate(QuizDTO dto);
+	public DataDTO successRate(String cityname);
 
 	public MessageDTO editingQuiz(QuizDTO dto);
 
